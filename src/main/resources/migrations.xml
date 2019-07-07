@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1" author="mohitsaluja">
+        <createTable tableName="users">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="creation_date_time" type="datetime" valueComputed="sysdate">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updation_date_time" type="datetime" valueComputed="sysdate">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <createTable tableName="accounts">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="version_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account_type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account_state" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="balance" type="decimal">
+                <constraints nullable="false"/>
+            </column>
+            <column name="creation_date_time" type="datetime" valueComputed="sysdate">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updation_date_time" type="datetime" valueComputed="sysdate">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <createTable tableName="transactions">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="reference_id" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount" type="decimal">
+                <constraints nullable="false"/>
+            </column>
+            <column name="transaction_type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="creation_date_time" type="datetime" valueComputed="sysdate">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updation_date_time" type="datetime" valueComputed="sysdate">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <insert tableName="users">
+            <column name="id" value="1"/>
+            <column name="first_name" value="Mohit"/>
+            <column name="last_name" value="Saluja"/>
+            <column name="creation_date_time" valueComputed="sysdate"/>
+        </insert>
+        <insert tableName="users">
+            <column name="id" value="2"/>
+            <column name="first_name" value="Sneha"/>
+            <column name="last_name" value="Arora"/>
+            <column name="creation_date_time" valueComputed="sysdate"/>
+        </insert>
+        <insert tableName="accounts">
+            <column name="id" value="1"/>
+            <column name="version_id" value="1"/>
+            <column name="user_id" value="1"/>
+            <column name="account_type" value="SAVINGS"/>
+            <column name="account_state" value="ACTIVE"/>
+            <column name="balance" value="1000"/>
+            <column name="creation_date_time" valueComputed="sysdate"/>
+        </insert>
+        <insert tableName="accounts">
+            <column name="id" value="2"/>
+            <column name="version_id" value="1"/>
+            <column name="user_id" value="2"/>
+            <column name="account_type" value="SAVINGS"/>
+            <column name="account_state" value="ACTIVE"/>
+            <column name="balance" value="500"/>
+            <column name="creation_date_time" valueComputed="sysdate"/>
+        </insert>
+        <insert tableName="accounts">
+            <column name="id" value="3"/>
+            <column name="version_id" value="1"/>
+            <column name="user_id" value="2"/>
+            <column name="account_type" value="SAVINGS"/>
+            <column name="account_state" value="CLOSED"/>
+            <column name="balance" value="0"/>
+            <column name="creation_date_time" valueComputed="sysdate"/>
+        </insert>
+        <insert tableName="accounts">
+            <column name="id" value="4"/>
+            <column name="version_id" value="1"/>
+            <column name="user_id" value="2"/>
+            <column name="account_type" value="SAVINGS"/>
+            <column name="account_state" value="DORMANT"/>
+            <column name="balance" value="0"/>
+            <column name="creation_date_time" valueComputed="sysdate"/>
+        </insert>
+        <insert tableName="transactions">
+            <column name="id" value="1"/>
+            <column name="reference_id" value="b5a34636-2b67-4513-8f54-74f113d2dd7e"/>
+            <column name="account_id" value="1"/>
+            <column name="amount" value="1000"/>
+            <column name="transaction_type" value="CREDIT"/>
+            <column name="creation_date_time" valueComputed="sysdate"/>
+        </insert>
+        <insert tableName="transactions">
+            <column name="id" value="2"/>
+            <column name="reference_id" value="ae559f40-0588-4e54-b300-99205f66d53b"/>
+            <column name="account_id" value="2"/>
+            <column name="amount" value="250"/>
+            <column name="transaction_type" value="CREDIT"/>
+            <column name="creation_date_time" valueComputed="sysdate"/>
+        </insert>
+        <insert tableName="transactions">
+            <column name="id" value="3"/>
+            <column name="reference_id" value="a7967651-236a-4854-a453-6aadb527f69f"/>
+            <column name="account_id" value="2"/>
+            <column name="amount" value="350"/>
+            <column name="transaction_type" value="CREDIT"/>
+            <column name="creation_date_time" valueComputed="sysdate"/>
+        </insert>
+        <insert tableName="transactions">
+            <column name="id" value="4"/>
+            <column name="reference_id" value="6b1f5a86-668c-49bf-abb5-62200041d305"/>
+            <column name="account_id" value="2"/>
+            <column name="amount" value="100"/>
+            <column name="transaction_type" value="DEBIT"/>
+            <column name="creation_date_time" valueComputed="sysdate"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
