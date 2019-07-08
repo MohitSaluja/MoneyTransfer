@@ -8,6 +8,7 @@ import com.assignment.moneytransfer.db.TransactionDAO;
 import com.assignment.moneytransfer.exceptions.mapper.AccountNotFoundExceptionMapper;
 import com.assignment.moneytransfer.exceptions.mapper.InsufficientBalanceExceptionMapper;
 import com.assignment.moneytransfer.exceptions.mapper.InvalidAccountStatusExceptionMapper;
+import com.assignment.moneytransfer.exceptions.mapper.OptimisticLockExceptionMapper;
 import com.assignment.moneytransfer.exceptions.mapper.ReferenceIdNotFoundExceptionMapper;
 import com.assignment.moneytransfer.health.MoneyTransferApplicationHealthCheck;
 import com.assignment.moneytransfer.resources.TransactionResource;
@@ -64,7 +65,7 @@ public class MoneyTransferApplication extends Application<MoneyTransferConfigura
         environment.jersey().register(new InvalidAccountStatusExceptionMapper());
         environment.jersey().register(new InsufficientBalanceExceptionMapper());
         environment.jersey().register(new ReferenceIdNotFoundExceptionMapper());
-
+        environment.jersey().register(new OptimisticLockExceptionMapper());
     }
 
     private final HibernateBundle<MoneyTransferConfiguration> hibernateBundle =
